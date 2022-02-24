@@ -1,14 +1,42 @@
 package com.example.messaging_api.model;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String phoneNumber;
+
+    @Column(unique = true)
     private String userName;
+
+    @Column
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    @Column
     private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "sender", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Message> sentMessagesList;
+
+    @OneToMany(mappedBy = "receiver", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Message> receivedMessagesList;
 
     public User() {
     }
@@ -59,6 +87,22 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Message> getSentMessagesList() {
+        return sentMessagesList;
+    }
+
+    public void setSentMessagesList(List<Message> sentMessagesList) {
+        this.sentMessagesList = sentMessagesList;
+    }
+
+    public List<Message> getReceivedMessagesList() {
+        return receivedMessagesList;
+    }
+
+    public void setReceivedMessagesList(List<Message> receivedMessagesList) {
+        this.receivedMessagesList = receivedMessagesList;
     }
 
     @Override
