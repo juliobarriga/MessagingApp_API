@@ -1,23 +1,43 @@
 package com.example.messaging_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "messages")
 public class Message {
 
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long sender;
-    private Long receiver;
+
+    @Column
     private LocalDate timestamp;
+
+    @Column
     private Boolean isRead;
+
+    @Column(columnDefinition = "TEXT")
     private String message;
+
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
+    @JsonIgnore
+    private User sender;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
+    @JsonIgnore
+    private User receiver;
 
     public Message() {
     }
 
-    public Message(Long id, Long sender, Long receiver, LocalDate timestamp, Boolean isRead, String message) {
+    public Message(Long id, LocalDate timestamp, Boolean isRead, String message) {
         this.id = id;
-        this.sender = sender;
-        this.receiver = receiver;
         this.timestamp = timestamp;
         this.isRead = isRead;
         this.message = message;
@@ -29,22 +49,6 @@ public class Message {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getSender() {
-        return sender;
-    }
-
-    public void setSender(Long sender) {
-        this.sender = sender;
-    }
-
-    public Long getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(Long receiver) {
-        this.receiver = receiver;
     }
 
     public LocalDate getTimestamp() {
@@ -71,12 +75,26 @@ public class Message {
         this.message = message;
     }
 
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", sender=" + sender +
-                ", receiver=" + receiver +
                 ", timestamp=" + timestamp +
                 ", isRead=" + isRead +
                 ", message='" + message + '\'' +
