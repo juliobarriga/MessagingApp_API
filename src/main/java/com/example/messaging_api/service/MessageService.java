@@ -62,11 +62,11 @@ public class MessageService {
     public Message deleteMessage(Long messageId) {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<Message> message = messageRepository.findByIdAndSenderId(messageId, userDetails.getUser().getId());
-        if(message.isEmpty()){
-            throw new InformationNotFoundException("User with id " + userDetails.getUser().getId() + " does not have message with Id " + messageId);
-        } else {
+        if(message.isPresent()){
             messageRepository.deleteById(messageId);
             return message.get();
+        } else {
+            throw new InformationNotFoundException("User with id " + userDetails.getUser().getId() + " does not have message with Id " + messageId);
         }
 
     }
