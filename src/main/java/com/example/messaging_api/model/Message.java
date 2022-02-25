@@ -3,7 +3,7 @@ package com.example.messaging_api.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
@@ -15,7 +15,7 @@ public class Message {
     private Long id;
 
     @Column
-    private LocalDate timestamp;
+    private LocalDateTime timestamp;
 
     @Column
     private Boolean isRead;
@@ -36,7 +36,7 @@ public class Message {
     public Message() {
     }
 
-    public Message(Long id, LocalDate timestamp, Boolean isRead, String message) {
+    public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message) {
         this.id = id;
         this.timestamp = timestamp;
         this.isRead = isRead;
@@ -51,11 +51,11 @@ public class Message {
         this.id = id;
     }
 
-    public LocalDate getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDate timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
