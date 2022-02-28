@@ -25,32 +25,32 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
-    @JsonIgnore
+//    @JsonIgnore
     private User sender;
 
     @ManyToOne
     @JoinColumn(name = "receiver_id")
-    @JsonIgnore
+//    @JsonIgnore
     private User receiver;
 
     public Message() {
     }
 
-//    public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message) {
-//        this.id = id;
-//        this.timestamp = timestamp;
-//        this.isRead = isRead;
-//        this.message = message;
-//    }
-
-    public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message, User sender, User receiver) {
+    public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message) {
         this.id = id;
         this.timestamp = timestamp;
         this.isRead = isRead;
         this.message = message;
-        this.sender = sender;
-        this.receiver = receiver;
     }
+
+//    public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message, User sender, User receiver) {
+//        this.id = id;
+//        this.timestamp = timestamp;
+//        this.isRead = isRead;
+//        this.message = message;
+//        this.sender = sender;
+//        this.receiver = receiver;
+//    }
 
     public Long getId() {
         return id;
@@ -100,16 +100,6 @@ public class Message {
         this.receiver = receiver;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Message{" +
-//                "id=" + id +
-//                ", timestamp=" + timestamp +
-//                ", isRead=" + isRead +
-//                ", message='" + message + '\'' +
-//                '}';
-//    }
-
     @Override
     public String toString() {
         return "Message{" +
@@ -117,8 +107,18 @@ public class Message {
                 ", timestamp=" + timestamp +
                 ", isRead=" + isRead +
                 ", message='" + message + '\'' +
-                ", sender=" + sender +
-                ", receiver=" + receiver +
                 '}';
     }
+
+//    @Override
+//    public String toString() {
+//        return "Message{" +
+//                "id=" + id +
+//                ", timestamp=" + timestamp +
+//                ", isRead=" + isRead +
+//                ", message='" + message + '\'' +
+//                ", sender=" + sender +
+//                ", receiver=" + receiver +
+//                '}';
+//    }
 }
