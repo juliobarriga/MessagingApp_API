@@ -1,5 +1,6 @@
 package com.example.messaging_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -32,10 +33,12 @@ public class User {
 
     @OneToMany(mappedBy = "sender", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
     private List<Message> sentMessagesList;
 
     @OneToMany(mappedBy = "receiver", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
     private List<Message> receivedMessagesList;
 
     public User() {
