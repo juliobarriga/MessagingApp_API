@@ -100,6 +100,16 @@ public class Message {
         this.receiver = receiver;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Message{" +
+//                "id=" + id +
+//                ", timestamp=" + timestamp +
+//                ", isRead=" + isRead +
+//                ", message='" + message + '\'' +
+//                '}';
+//    }
+
     @Override
     public String toString() {
         return "Message{" +
@@ -107,6 +117,8 @@ public class Message {
                 ", timestamp=" + timestamp +
                 ", isRead=" + isRead +
                 ", message='" + message + '\'' +
+                ", sender=" + sender +
+                ", receiver=" + receiver +
                 '}';
     }
 }
