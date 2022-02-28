@@ -36,12 +36,12 @@ public class Message {
     public Message() {
     }
 
-    public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message) {
-        this.id = id;
-        this.timestamp = timestamp;
-        this.isRead = isRead;
-        this.message = message;
-    }
+//    public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message) {
+//        this.id = id;
+//        this.timestamp = timestamp;
+//        this.isRead = isRead;
+//        this.message = message;
+//    }
 
     public Message(Long id, LocalDateTime timestamp, Boolean isRead, String message, User sender, User receiver) {
         this.id = id;
