@@ -29,9 +29,14 @@ public class MessageController {
         return messageService.createMessageByReceiverId(receiverId, messageObject);
     }
 
-    @GetMapping("/messages/{receiverId}")
+    @GetMapping("/messages/sent/{receiverId}")
     public List<Message> getMessagesByReceiverId(@PathVariable(value = "receiverId") Long receiverId){
         return messageService.getMessagesByReceiverId(receiverId);
+    }
+
+    @GetMapping("/messages/received/{senderId}")
+    public List<Message> getMessagesBySenderId(@PathVariable(value = "senderId") Long senderId){
+        return messageService.getMessagesBySenderId(senderId);
     }
 
     @PutMapping("/messages/{messageId}")

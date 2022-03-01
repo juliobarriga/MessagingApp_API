@@ -53,6 +53,12 @@ public class MessageService {
         return messages;
     }
 
+    public List<Message> getMessagesBySenderId(Long senderId) {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Message> messages = messageRepository.findBySenderIdAndReceiverId(senderId, userDetails.getUser().getId());
+        return messages;
+    }
+
     public Message updateMessage(Long messageId) {
         Optional<Message> message = messageRepository.findById(messageId);
         message.get().setRead(true);
