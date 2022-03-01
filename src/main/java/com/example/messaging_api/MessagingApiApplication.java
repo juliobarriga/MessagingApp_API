@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @SpringBootApplication
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://messagingapp--api.herokuapp.com")
 public class MessagingApiApplication {
 
     public static void main(String[] args) {
