@@ -25,7 +25,7 @@ public class MessagingApiApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry){
-                registry.addMapping("/*").allowedHeaders("*").allowedOrigins("*").allowCredentials(true);
+                registry.addMapping("/*").allowedHeaders("*").allowedOrigins("*").allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS").allowCredentials(true);
             }
         };
     }
