@@ -70,4 +70,9 @@ public class MessageService {
         }
 
     }
+
+    public User getUserInfo() {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userDetails.getUser();
+    }
 }

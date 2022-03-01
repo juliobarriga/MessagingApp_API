@@ -1,6 +1,7 @@
 package com.example.messaging_api.controller;
 
 import com.example.messaging_api.model.Message;
+import com.example.messaging_api.model.User;
 import com.example.messaging_api.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +43,8 @@ public class MessageController {
     public Message deleteMessage(@PathVariable(value = "messageId") Long messageId){
         return messageService.deleteMessage(messageId);
     }
+
+    @GetMapping("/user")
+    public User getUserInfo(){ return messageService.getUserInfo(); }
 
 }
