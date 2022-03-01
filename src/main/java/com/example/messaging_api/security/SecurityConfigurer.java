@@ -40,8 +40,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws  Exception{
-        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
-        http.authorizeRequests().antMatchers(
+//        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
+        http.cors().and().authorizeRequests().antMatchers(
                         "/auth/users", "/auth/users/login", "/auth/users/register").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
