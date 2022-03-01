@@ -13,22 +13,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Arrays;
 
 @SpringBootApplication
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class MessagingApiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MessagingApiApplication.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry){
-                registry.addMapping("/*").allowedHeaders("*").allowedOrigins("*").allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS").allowCredentials(true);
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry){
+//                registry.addMapping("/*").allowedHeaders("*").allowedOrigins("*").allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS").allowCredentials(true);
+//            }
+//        };
+//    }
 
 //    @Bean
 //    public CorsFilter corsFilter() {
