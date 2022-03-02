@@ -91,4 +91,10 @@ public class MessageService {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userDetails.getUser();
     }
+
+    public List<User> getAllUsers() {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<User> users = userRepository.findAll();
+        return users;
+    }
 }

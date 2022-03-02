@@ -44,6 +44,11 @@ public class MessageController {
         return messageService.getSharedMessages(secondUserId);
     }
 
+    @GetMapping("/users")
+    public List<User> getAllUsers(){
+        return messageService.getAllUsers();
+    }
+
     @PutMapping("/messages/{messageId}")
     public Message updateMessage(@PathVariable(value = "messageId") Long messageId){
         return messageService.updateMessage(messageId);
