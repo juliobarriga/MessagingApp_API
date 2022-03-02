@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,15 @@ public class MessageService {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Message> messages = messageRepository.findBySenderIdAndReceiverId(senderId, userDetails.getUser().getId());
         return messages;
+    }
+
+    public List<Message> getSharedMessages(Long secondUserId){
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Message> messagesFirst = messageRepository.findBySenderIdOrReceiverId(userDetails.getUser().getId(), userDetails.getUser().getId());
+        List<Message> messagesSecond = messageRepository.findBySenderIdOrReceiverId(secondUserId,secondUserId);
+        List<Message> sharedMessages = new ArrayList<Message>(messagesFirst);
+        sharedMessages.retainAll(messagesSecond);
+        return sharedMessages;
     }
 
     public Message updateMessage(Long messageId) {
